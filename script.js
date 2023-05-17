@@ -1,6 +1,9 @@
-var canvas = document.getElementById("creativeCoding");
+// Bouncing Ball with Creative Coding
+
+var canvas = document.createElement("canvas");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+document.body.appendChild(canvas);
 var ctx = canvas.getContext("2d");
 
 var x = 0;
@@ -21,25 +24,17 @@ function Square() {
 function drawBoxxy() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-// Adding Strings 
-
+  // Adding Strings
   ctx.font = "50px Arial";
   ctx.fillStyle = "deepskyblue";
   ctx.fillText("See you later Alligator", 20, y);
   ctx.fillStyle = "deeppink";
   ctx.fillText("holy moly Guacamole", x, y);
 
-
-//  Passing a variable with text
-ctx.fillStyle = "#ffb703";  
-let seriousQuestion = "Bye bye butterfly";
+  // Passing a variable with text
+  ctx.fillStyle = "#ffb703";
+  let seriousQuestion = "Bye bye butterfly";
   ctx.fillText(seriousQuestion, x, 400);
-
-
-
-
-
-
 
   Square();
   while (x + incrementor > canvas.width || x + incrementor < 0) {
@@ -52,4 +47,37 @@ let seriousQuestion = "Bye bye butterfly";
   y += incrementor;
 }
 
-setInterval(drawBoxxy, 10);
+// Bouncing ball properties
+const ballRadius = 20;
+let ballX = canvas.width / 2;
+let ballY = canvas.height / 2;
+let ballDX = 2;
+let ballDY = -2;
+
+function drawBall() {
+  ctx.beginPath();
+  ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
+  ctx.fillStyle = "black";
+  ctx.fill();
+  ctx.closePath();
+
+
+  if (ballX + ballDX > canvas.width - ballRadius || ballX + ballDX < ballRadius) {
+    ballDX = -ballDX;
+  }
+  if (ballY + ballDY > canvas.height - ballRadius || ballY + ballDY < ballRadius) {
+    ballDY = -ballDY;
+  }
+
+  ballX += ballDX;
+  ballY += ballDY;
+}
+
+function animate() {
+  drawBoxxy();
+  drawBall();
+
+  requestAnimationFrame(animate);
+}
+
+animate();
