@@ -5,11 +5,17 @@ var ctx = canvas.getContext("2d");
 
 var x = 0;
 var y = 0;
-var incrementor = 2;
+var incrementor = 1;
 
 function Square() {
-  ctx.fillStyle = "blue";
+  ctx.fillStyle = "deeppink";
   ctx.fillRect(x, y, 100, 100);
+
+  ctx.fillStyle = "purple";
+  ctx.fillRect(-x, 600, 700, 100);
+
+  ctx.fillStyle = "yellow";
+  ctx.fillRect(x, 200, 400, 20);
 }
 
 function drawBoxxy() {
@@ -18,13 +24,15 @@ function drawBoxxy() {
 // Adding Strings 
 
   ctx.font = "50px Arial";
-  ctx.fillStyle = "red";
-  ctx.fillText("Wow.. this is amazing!!", 100, 250);
-  ctx.fillText("Bannanas!!", 200, y);
+  ctx.fillStyle = "deepskyblue";
+  ctx.fillText("See you later Alligator", 20, y);
+  ctx.fillStyle = "deeppink";
+  ctx.fillText("holy moly Guacamole", x, y);
 
 
 //  Passing a variable with text
-  let seriousQuestion = "Fuzzy Wuzzy wasn't fuzzy, was he?";
+ctx.fillStyle = "#ffb703";  
+let seriousQuestion = "Bye bye butterfly";
   ctx.fillText(seriousQuestion, x, 400);
 
 
